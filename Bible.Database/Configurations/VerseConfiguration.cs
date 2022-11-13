@@ -13,8 +13,6 @@ namespace Bible.Database.Configurations
             builder.Property(x => x.Content).IsRequired().IsUnicode();
             // Forgein key
             builder.HasOne(x => x.Chapter).WithMany(x => x.Verses).HasForeignKey(x => x.ChapterId);
-            builder.HasOne(x => x.AudioVerse).WithMany(x => x.Verses).HasForeignKey(x => x.AudioVerseId);
-
         }
     }
 }

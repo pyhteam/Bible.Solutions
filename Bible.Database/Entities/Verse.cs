@@ -9,8 +9,7 @@
         // forgein key
         public Int32? ChapterId { get; set; }
         public Chapter? Chapter { get; set; }
-        public Int32? AudioVerseId { get; set; }
-        public AudioVerse? AudioVerse { get; set; }
+        public List<AudioVerse>? AudioVerses { get; set; }
 
     }
 }

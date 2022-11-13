@@ -14,7 +14,8 @@ namespace Bible.Database.Configurations
             builder.Property(x => x.CreatedAt).HasDefaultValue(DateTime.Now);
 
             // forgein key
-            builder.HasOne(x => x.Language).WithMany(x => x.AudioVerses).HasForeignKey(x => x.LanguageId);
+            builder.HasOne(x => x.Verse).WithMany(x => x.AudioVerses).HasForeignKey(x => x.VerseId);
+
         }
     }
 }

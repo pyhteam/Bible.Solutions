@@ -4,12 +4,12 @@
     {
         public Int32 Id { get; set; }
         public String? Name { get; set; }
+        public String? Vocal { get; set; } // Default: "Male": "Female"
         public String? LinkAudio { get; set; }
         public DateTime? CreatedAt { get; set; }
         // forgein key
-        public Int32 LanguageId { get; set; }
-        public Language? Language { get; set; }
-        public List<Verse>? Verses { get; set; }
+        public Int32 VerseId { get; set; }
+        public Verse? Verse { get; set; }
 
     }
 }
