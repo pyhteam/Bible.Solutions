@@ -71,16 +71,13 @@
 
 [![Product Name Screen Shot][product-screenshot]]()
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `pyhteam`, `Bible.Solutions
-`, `senms9x`
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
 
-* [![NetCore][.NET Core]][Net-Core-Url]
+* [![NetCore][NetCore]][Net-Core-Url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -172,5 +169,5 @@ Project: [https://github.com/pyhteam/Bible.Solutions](https://github.com/pyhteam
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[Net-Core-Url]: https://dotnet.microsoft.com/en-us/download       
-[NetCore]:https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/2048px-.NET_Core_Logo.svg.png
+[NetCore-url]: https://dotnet.microsoft.com     
+[NetCore]: https://camo.githubusercontent.com/ff765790707ecba41b57071db549f75fbf0eeffa5ac6996ff077083863b8bea4/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d2e4e455426636f6c6f723d353132424434266c6f676f3d2e4e4554266c6f676f436f6c6f723d464646464646266c6162656c3d
