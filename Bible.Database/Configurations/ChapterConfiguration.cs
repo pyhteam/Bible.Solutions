@@ -9,7 +9,6 @@ namespace Bible.Database.Configurations
         public void Configure(EntityTypeBuilder<Chapter> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.ChapterNumber).IsRequired();
             builder.Property(c => c.Name).IsRequired().IsUnicode().HasMaxLength(250);
             builder.Property(c => c.Summary).IsRequired().IsUnicode().HasMaxLength(1000);
 

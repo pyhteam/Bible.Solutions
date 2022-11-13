@@ -3,7 +3,6 @@
     public class Verse
     {
         public Int32 Id { get; set; }
-        public int VerseNumber { get; set; }
         public String? Content { get; set; }
 
         // forgein key

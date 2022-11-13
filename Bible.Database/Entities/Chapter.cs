@@ -9,7 +9,6 @@ namespace Bible.Database.Entities
     public class Chapter
     {
         public Int32 Id { get; set; }
-        public int ChapterNumber { get; set; }
         public String? Name { get; set; }
         public String? Summary { get; set; }
 

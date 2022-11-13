@@ -13,9 +13,6 @@ namespace Bible.Database.Configurations
             builder.Property(x => x.LinkAudio).IsRequired().IsUnicode().HasMaxLength(250);
             builder.Property(x => x.CreatedAt).HasDefaultValue(DateTime.Now);
 
-            // forgein key
-            builder.HasOne(x => x.Verse).WithMany(x => x.AudioVerses).HasForeignKey(x => x.VerseId);
-
         }
     }
 }

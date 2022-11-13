@@ -9,7 +9,6 @@
         // Forgein key
         public Int32? BookId { get; set; }
         public Book? Book { get; set; }
-        public List<AudioVerse>? AudioVerses { get; set; }
 
     }
 }
