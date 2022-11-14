@@ -7,5 +7,6 @@
         public String? Summary { get; set; }
         public Int32 BookId { get; set; }
         public String? BookName { get; set; }
+        public List<VerserView>? VerserViews { get; set; }
     }
 }

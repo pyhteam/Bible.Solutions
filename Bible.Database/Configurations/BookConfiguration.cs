@@ -13,8 +13,8 @@ namespace Bible.Database.Configurations
             builder.Property(x => x.Introduce).IsUnicode().HasMaxLength(500);
             builder.Property(x => x.CodeBook).IsUnicode().IsRequired().HasMaxLength(150);
             // Forgein key
-            builder.HasOne(x => x.Language).WithOne(x => x.Book).HasForeignKey(typeof(Language), "BookId");
             builder.HasOne(x => x.Section).WithMany(x => x.Books).HasForeignKey(x => x.SectionId);
+            builder.HasOne(x => x.Bibles).WithMany(x => x.Books).HasForeignKey(x => x.BiblesId);
         }
     }
 }

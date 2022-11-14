@@ -2,6 +2,7 @@
 using Bible.Service.Interfaces;
 using Bible.Service.Services;
 using Bible.Service.Services.AudioVerseServices;
+using Bible.Service.Services.BiblesServices;
 using Bible.Service.Services.BookServices;
 using Bible.Service.Services.ChapterServices;
 using Bible.Service.Services.LanguageServices;
@@ -23,6 +24,7 @@ namespace Bible.Service.Extensions
 
             // Custom DI
             services.AddTransient(typeof(ILanguageService), typeof(LanguageService));
+            services.AddTransient(typeof(IBiblesService), typeof(BiblesService));
             services.AddTransient(typeof(ISectionService), typeof(SectionSerive));
             services.AddTransient(typeof(IBookService), typeof(BookService));
             services.AddTransient(typeof(IChapterService), typeof(ChapterService));

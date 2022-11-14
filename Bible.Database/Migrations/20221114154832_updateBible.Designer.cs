@@ -4,6 +4,7 @@ using Bible.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bible.Database.Migrations
 {
     [DbContext(typeof(BibleContext))]
-    partial class BibleContextModelSnapshot : ModelSnapshot
+    [Migration("20221114154832_updateBible")]
+    partial class updateBible
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +35,7 @@ namespace Bible.Database.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 14, 22, 58, 35, 729, DateTimeKind.Local).AddTicks(405));
+                        .HasDefaultValue(new DateTime(2022, 11, 14, 22, 48, 31, 972, DateTimeKind.Local).AddTicks(9803));
 
                     b.Property<string>("LinkAudio")
                         .IsRequired()
@@ -85,7 +87,8 @@ namespace Bible.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LanguageId");
+                    b.HasIndex("LanguageId")
+                        .IsUnique();
 
                     b.ToTable("Bibles");
                 });
@@ -168,6 +171,9 @@ namespace Bible.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("BiblesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -238,8 +244,8 @@ namespace Bible.Database.Migrations
             modelBuilder.Entity("Bible.Database.Entities.Bibles", b =>
                 {
                     b.HasOne("Bible.Database.Entities.Language", "Language")
-                        .WithMany("Bibles")
-                        .HasForeignKey("LanguageId")
+                        .WithOne("Bibles")
+                        .HasForeignKey("Bible.Database.Entities.Bibles", "LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -19,13 +19,13 @@ namespace Bible.Service.Services.BookServices
             {
                 return false;
             }
-            Book book = new Book()
+            var book = new Book()
             {
                 Name = entity.Name,
                 CodeBook = entity.CodeBook,
                 Introduce = entity.Introduce,
-                LanguageId = entity.LanguageId,
-                SectionId = entity.SectionId
+                SectionId = entity.SectionId,
+                BiblesId = entity.BiblesId
             };
             _unitOfWork.GetRepository<Book>().Add(book);
             return await _unitOfWork.SaveChangesAsync() > 0;
@@ -51,19 +51,20 @@ namespace Bible.Service.Services.BookServices
         public async Task<IEnumerable<BookView>> GetAllAsync()
         {
             var books = await _unitOfWork.GetRepository<Book>().AsQueryable()
-             .Include(x => x.Language)
-             .Include(x => x.Section)
+                .Include(x => x.Bibles)
+                .Include(x => x.Section)
                 .Select(x => new BookView()
                 {
                     Id = x.Id,
                     Name = x.Name,
                     CodeBook = x.CodeBook,
                     Introduce = x.Introduce,
-                    LanguageId = x.LanguageId,
-                    LanguageCode = x.Language.Code,
-                    LanguageName = x.Language.Name,
                     SectionId = x.SectionId,
-                    SectionName = x.Section.Name
+                    SectionName = x.Section.Name,
+                    BiblesId = x.BiblesId,
+                    BiblesName = x.Bibles.Name,
+                    BiblesCode = x.Bibles.Code,
+
                 }).ToListAsync();
             return books;
         }
@@ -75,20 +76,21 @@ namespace Bible.Service.Services.BookServices
                 return null;
             }
             var book = await _unitOfWork.GetRepository<Book>().AsQueryable()
-             .Include(x => x.Language)
-             .Include(x => x.Section)
-             .Select(x => new BookView()
-             {
-                 Id = x.Id,
-                 Name = x.Name,
-                 CodeBook = x.CodeBook,
-                 Introduce = x.Introduce,
-                 LanguageId = x.LanguageId,
-                 LanguageCode = x.Language.Code,
-                 LanguageName = x.Language.Name,
-                 SectionId = x.SectionId,
-                 SectionName = x.Section.Name
-             }).FirstOrDefaultAsync(x => x.Equals(id));
+                 .Include(x => x.Bibles)
+                 .Include(x => x.Section)
+                 .Select(x => new BookView()
+                 {
+                     Id = x.Id,
+                     Name = x.Name,
+                     CodeBook = x.CodeBook,
+                     Introduce = x.Introduce,
+                     SectionId = x.SectionId,
+                     SectionName = x.Section.Name,
+                     BiblesId = x.BiblesId,
+                     BiblesName = x.Bibles.Name,
+                     BiblesCode = x.Bibles.Code,
+
+                 }).FirstOrDefaultAsync(x => x.Equals(id));
             return book;
         }
 
@@ -96,18 +98,19 @@ namespace Bible.Service.Services.BookServices
         {
             if (entity == null || id == 0)
             {
-                return null;
+                return 0;
             }
             var book = _unitOfWork.GetRepository<Book>().Get(id);
             if (book == null)
             {
-                return null;
+                return 0;
             }
             book.Name = entity.Name;
             book.CodeBook = entity.CodeBook;
             book.Introduce = entity.Introduce;
-            book.LanguageId = entity.LanguageId;
             book.SectionId = entity.SectionId;
+            book.BiblesId = entity.BiblesId;
+
             _unitOfWork.GetRepository<Book>().Update(book);
             return await _unitOfWork.SaveChangesAsync();
         }

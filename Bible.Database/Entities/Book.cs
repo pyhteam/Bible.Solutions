@@ -8,8 +8,8 @@
         public String? Introduce { get; set; }
 
         // Forgein key
-        public Int32 LanguageId { get; set; }
-        public Language? Language { get; set; }
+        public Int32 BiblesId { get; set; }
+        public Bibles? Bibles { get; set; }
         public Int32 SectionId { get; set; }
         public Section? Section { get; set; }
         public List<Chapter>? Chapters { get; set; }

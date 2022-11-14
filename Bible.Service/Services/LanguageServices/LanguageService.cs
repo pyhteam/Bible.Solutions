@@ -48,17 +48,22 @@ namespace Bible.Service.Services.LanguageServices
 
         public async Task<LanguageView> GetByIdAsync(int id)
         {
-            var language = _unitOfWork.GetRepository<Language>().Get(id);
-            if (language == null)
-            {
-                return null;
-            }
-            return new LanguageView()
-            {
-                Id = language.Id,
-                Name = language.Name,
-                Code = language.Code
-            };
+            var language = _unitOfWork.GetRepository<Language>().AsQueryable()
+                .Include(x => x.Bibles)
+                .Select(x => new LanguageView()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Code = x.Code,
+                    BiblesViews = x.Bibles.Select(x => new BiblesView()
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Code = x.Code
+                    }).ToList()
+                }).FirstOrDefault(x => x.Id == id);
+            return language;
+
         }
 
         public async Task<int> UpdateAsync(LanguageQuery entity, int id)

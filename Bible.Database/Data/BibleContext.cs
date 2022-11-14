@@ -31,6 +31,8 @@ namespace Bible.Database.Data
         public DbSet<Chapter>? Chapters { get; set; }
         public DbSet<Verse>? Verses { get; set; }
         public DbSet<AudioVerse>? AudioVerses { get; set; }
+        public DbSet<Bibles>? Bibles { get; set; }
+
 
     }
 }

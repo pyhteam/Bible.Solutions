@@ -7,8 +7,7 @@
         public String? Name { get; set; }
 
         // Forgein key
-        public Int32? BookId { get; set; }
-        public Book? Book { get; set; }
+        public List<Bibles>? Bibles { get; set; }
 
     }
 }

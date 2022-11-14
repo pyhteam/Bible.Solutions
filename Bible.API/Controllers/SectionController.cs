@@ -1,43 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Bible.API.Controllers.Base;
+using Bible.DTOs.Queries;
+using Bible.Service.Services.SectionServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Bible.Database.Data;
-using Bible.Database.Entities;
-using Bible.Service.Services.LanguageServices;
-using Bible.DTOs.Queries;
-using Bible.API.Controllers.Base;
 
 namespace Bible.API.Controllers
 {
-
-    public class LanguagesController : BaseController<ILanguageService>
+    public class SectionController : BaseController<ISectionService>
     {
-        public LanguagesController(ILanguageService service) : base(service)
+        public SectionController(ISectionService service) : base(service)
         {
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetLanguages()
+        public async Task<IActionResult> GetSections()
         {
-            var languages = await _service.GetAllAsync();
-            return GetResponse(languages);
+            var sections = await _service.GetAllAsync();
+            return GetResponse(sections);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetLanguage(int id)
+        public async Task<IActionResult> GetSection(int id)
         {
-            var language = await _service.GetByIdAsync(id);
-            if (language == null)
+            var section = await _service.GetByIdAsync(id);
+            if (section == null)
             {
                 return NotFound();
             }
-            return GetResponse(language);
+            return GetResponse(section);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLanguage(int id, LanguageQuery language)
+        public async Task<IActionResult> PutSection(int id, SectionQuery section)
         {
             if (id == 0)
             {
@@ -45,18 +37,18 @@ namespace Bible.API.Controllers
             }
             try
             {
-                int result = await _service.UpdateAsync(language, id);
+                int result = await _service.UpdateAsync(section, id);
                 if (result == 0)
                 {
                     return GetResponseError("Update failed");
                 }
-                return GetResponse(language);
+                return GetResponse(section);
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (await _service.GetByIdAsync(id) != null)
                 {
-                    return GetResponseError("Language not found");
+                    return GetResponseError("section not found");
                 }
                 else
                 {
@@ -65,21 +57,21 @@ namespace Bible.API.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> PostLanguage(LanguageQuery language)
+        public async Task<IActionResult> PostSection(SectionQuery section)
         {
-            if (language == null)
+            if (section == null)
             {
                 return BadRequest();
             }
-            bool result = await _service.CreateAsync(language);
+            bool result = await _service.CreateAsync(section);
             if (result == false)
             {
                 return GetResponseError("Create failed");
             }
-            return GetResponse(language);
+            return GetResponse(section);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLanguage(int id)
+        public async Task<IActionResult> DeleteSection(int id)
         {
             if (id == 0)
             {

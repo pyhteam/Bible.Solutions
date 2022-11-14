@@ -8,12 +8,11 @@ namespace Bible.DTOs.Views
         public string? Name { get; set; }
         public string? CodeBook { get; set; }
         public string? Introduce { get; set; }
-        public int LanguageId { get; set; }
-        public string? LanguageName { get; set; }
-        public string? LanguageCode { get; set; }
         public int SectionId { get; set; }
         public string? SectionName { get; set; }
-
+        public int BiblesId { get; set; }
+        public string? BiblesName { get; set; }
+        public string? BiblesCode { get; set; }
         public List<ChapterView>? Chapters { get; set; }
     }
 }
