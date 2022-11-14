@@ -11,10 +11,10 @@ namespace Bible.Database.Entities
         public Int32 Id { get; set; }
         public String? Name { get; set; }
         public String? Summary { get; set; }
+        public Int32 BookId { get; set; }
 
         // forgein key
         public List<Verse>? Verses { get; set; }
-        public Int32? BookId { get; set; }
         public Book? Book { get; set; }
     }
 }

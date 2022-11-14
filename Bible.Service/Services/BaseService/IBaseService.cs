@@ -1,11 +1,11 @@
 ﻿namespace Bible.Service.Services.BaseService
 {
-    public interface IBaseService<T, T1>
+    public interface IBaseService<T1, T2>
     {
-        Task<IEnumerable<T1>> GetAllAsync();
-        Task<T1> GetByIdAsync(int id);
-        Task<bool> CreateAsync(T entity);
-        Task<int> UpdateAsync(T entity, int id);
+        Task<IEnumerable<T2>> GetAllAsync();
+        Task<T2> GetByIdAsync(int id);
+        Task<bool> CreateAsync(T1 entity);
+        Task<int> UpdateAsync(T1 entity, int id);
         Task<int> DeleteAsync(int id);
     }
 }

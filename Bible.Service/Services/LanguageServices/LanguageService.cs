@@ -7,12 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bible.Service.Services.LanguageServices
 {
-    public class LanguageService : ILanguageService
+    public class LanguageService : ServiceBase<IUnitOfWork>, ILanguageService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public LanguageService(IUnitOfWork unitOfWork)
+        public LanguageService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<bool> CreateAsync(LanguageQuery entity)
