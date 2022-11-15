@@ -24,7 +24,7 @@
     <img src="https://i.ibb.co/Fb8YCDq/bible-logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Bible Database</h3>
+<h3 align="center">Bible Database - ✝️The Word of God is always free for everyone.</h3>
 
   <p align="center">
     This is bible database using C# - .NET Core build
