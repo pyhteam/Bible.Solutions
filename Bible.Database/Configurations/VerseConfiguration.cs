@@ -10,8 +10,9 @@ namespace Bible.Database.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Content).IsRequired().IsUnicode();
+            builder.Property(x => x.Number).IsRequired();
             // Forgein key
-            builder.HasOne(x => x.Chapter).WithMany(x => x.Verses).HasForeignKey(x => x.ChapterId);
+            builder.HasOne(x => x.Section).WithMany(x => x.Verses).HasForeignKey(x => x.SectionId);
             builder.HasMany(x => x.AudioVerses).WithOne(x => x.Verse).HasForeignKey(x => x.VerseId);
         }
     }

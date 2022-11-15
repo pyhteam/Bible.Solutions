@@ -14,7 +14,7 @@ namespace Bible.Database.Entities
         public Int32 BookId { get; set; }
 
         // forgein key
-        public List<Verse>? Verses { get; set; }
+        public List<Section>? Sections { get; set; }
         public Book? Book { get; set; }
     }
 }

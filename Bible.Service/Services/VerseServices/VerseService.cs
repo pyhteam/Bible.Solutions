@@ -22,7 +22,8 @@ namespace Bible.Service.Services.VerseServices
             var verse = new Verse()
             {
                 Content = entity.Content,
-                ChapterId = entity.ChapterId,
+                SectionId = entity.SectionId,
+                Number = entity.Number
             };
             _unitOfWork.GetRepository<Verse>().Add(verse);
             return await _unitOfWork.SaveChangesAsync() > 0;
@@ -46,11 +47,26 @@ namespace Bible.Service.Services.VerseServices
         public async Task<IEnumerable<VerserView>> GetAllAsync()
         {
             var verses = await _unitOfWork.GetRepository<Verse>().AsQueryable()
+                .Include(x => x.Section)
                 .Select(x => new VerserView()
                 {
                     Id = x.Id,
                     Content = x.Content,
-                    ChapterId = x.ChapterId,
+                    Number = x.Number,
+                    SectionId = x.SectionId,
+                    SectionName = x.Section.Name,
+                    AudioVerses = x.AudioVerses.Select(y => new AudioVerseView()
+                    {
+                        Id = y.Id,
+                        Name = y.Name,
+                        LinkAudio = y.LinkAudio,
+                        Vocal = y.Vocal,
+                        CreatedBy = y.CreatedBy,
+                        UpdatedBy = y.UpdatedBy,
+                        IsActive = y.IsActive,
+                        CreatedAt = y.CreatedAt,
+                        UpdatedAt = y.UpdateAt,
+                    }).ToList(),
                 }).ToListAsync();
             return verses;
         }
@@ -62,24 +78,27 @@ namespace Bible.Service.Services.VerseServices
                 return null;
             }
             var verse = await _unitOfWork.GetRepository<Verse>().AsQueryable()
-                .Include(x => x.AudioVerses)
+                .Include(x => x.Section)
                 .Select(x => new VerserView()
                 {
                     Id = x.Id,
+                    Number = x.Number,
                     Content = x.Content,
-                    ChapterId = x.ChapterId,
-                    AudioVerses = x.AudioVerses.Select(a => new AudioVerseView
+                    SectionId = x.SectionId,
+                    SectionName = x.Section.Name,
+                    AudioVerses = x.AudioVerses.Select(y => new AudioVerseView()
                     {
-                        Id = a.Id,
-                        LinkAudio = a.LinkAudio,
-                        Name = a.Name,
-                        VerseId = a.VerseId,
-                        Vocal = a.Vocal,
-                        CreatedAt = a.CreatedAt,
+                        Id = y.Id,
+                        Name = y.Name,
+                        LinkAudio = y.LinkAudio,
+                        Vocal = y.Vocal,
+                        CreatedBy = y.CreatedBy,
+                        UpdatedBy = y.UpdatedBy,
+                        IsActive = y.IsActive,
+                        CreatedAt = y.CreatedAt,
+                        UpdatedAt = y.UpdateAt,
                     }).ToList(),
-                    ChapterName = x.Chapter.Name,
-
-                }).FirstOrDefaultAsync(x => x.Id.Equals(id));
+                }).FirstOrDefaultAsync(x => x.Equals(id));
             return verse;
         }
 
@@ -95,7 +114,8 @@ namespace Bible.Service.Services.VerseServices
                 return 0;
             }
             verse.Content = entity.Content;
-            verse.ChapterId = entity.ChapterId;
+            verse.SectionId = entity.SectionId;
+            verse.Number = entity.Number;
             _unitOfWork.GetRepository<Verse>().Update(verse);
             return await _unitOfWork.SaveChangesAsync();
         }

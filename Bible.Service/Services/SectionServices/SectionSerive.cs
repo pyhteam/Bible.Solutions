@@ -18,6 +18,8 @@ namespace Bible.Service.Services.SectionServices
             Section section = new Section()
             {
                 Name = entity.Name,
+                ChapterId = entity.ChapterId
+
             };
             _unitOfWork.GetRepository<Section>().Add(section);
             return await _unitOfWork.SaveChangesAsync() > 0;
@@ -40,11 +42,16 @@ namespace Bible.Service.Services.SectionServices
 
         public async Task<IEnumerable<SectionView>> GetAllAsync()
         {
-            var sections = await _unitOfWork.GetRepository<Section>().AsQueryable().Select(x => new SectionView()
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToListAsync();
+            var sections = await _unitOfWork.GetRepository<Section>().AsQueryable()
+                .Include(x => x.Chapter)
+                .Select(x => new SectionView()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChaterId = x.ChapterId,
+                    ChaterName = x.Chapter.Name,
+
+                }).ToListAsync();
             return sections;
         }
 
@@ -54,16 +61,22 @@ namespace Bible.Service.Services.SectionServices
             {
                 return null;
             }
-            var section = _unitOfWork.GetRepository<Section>().Get(id);
-            if (section == null)
-            {
-                return null;
-            }
-            return new SectionView()
-            {
-                Id = section.Id,
-                Name = section.Name
-            };
+            var section = await _unitOfWork.GetRepository<Section>().AsQueryable()
+                .Include(x => x.Chapter)
+                .Select(x => new SectionView()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChaterId = x.ChapterId,
+                    ChaterName = x.Chapter.Name,
+                    VerserViews = x.Verses.Select(y => new VerserView()
+                    {
+                        Id = y.Id,
+                        Content = y.Content,
+                    }).ToList()
+
+                }).FirstOrDefaultAsync(x => x.Id.Equals(id));
+            return section;
         }
 
         public async Task<int> UpdateAsync(SectionQuery entity, int id)
@@ -78,6 +91,8 @@ namespace Bible.Service.Services.SectionServices
                 return 0;
             }
             section.Name = entity.Name;
+            section.ChapterId = entity.ChapterId;
+
             _unitOfWork.GetRepository<Section>().Update(section);
             return await _unitOfWork.SaveChangesAsync();
         }

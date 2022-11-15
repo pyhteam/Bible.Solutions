@@ -2,6 +2,7 @@
 {
     public class SectionQuery
     {
-        public string? Name { get; set; }
+        public String? Name { get; set; }
+        public Int32 ChapterId { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Bible.DTOs.Views
+﻿using Bible.Database.Entities;
+
+namespace Bible.DTOs.Views
 {
     public class ChapterView
     {
@@ -7,6 +9,6 @@
         public String? Summary { get; set; }
         public Int32 BookId { get; set; }
         public String? BookName { get; set; }
-        public List<VerserView>? VerserViews { get; set; }
+        public List<SectionView>? Sections { get; set; }
     }
 }

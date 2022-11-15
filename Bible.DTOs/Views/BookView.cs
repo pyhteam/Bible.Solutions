@@ -4,15 +4,15 @@ namespace Bible.DTOs.Views
 {
     public class BookView
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? CodeBook { get; set; }
-        public string? Introduce { get; set; }
-        public int SectionId { get; set; }
-        public string? SectionName { get; set; }
-        public int BiblesId { get; set; }
-        public string? BiblesName { get; set; }
-        public string? BiblesCode { get; set; }
+        public Int32 Id { get; set; }
+        public String? Name { get; set; }
+        public String? CodeBook { get; set; }
+        public String? Introduce { get; set; }
+        public Int32 PartId { get; set; }
+        public String? PartName { get; set; }
+        public Int32 BiblesId { get; set; }
+        public String? BiblesName { get; set; }
+        public String? BiblesCode { get; set; }
         public List<ChapterView>? Chapters { get; set; }
     }
 }

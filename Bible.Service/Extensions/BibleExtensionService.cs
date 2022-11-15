@@ -6,6 +6,7 @@ using Bible.Service.Services.BiblesServices;
 using Bible.Service.Services.BookServices;
 using Bible.Service.Services.ChapterServices;
 using Bible.Service.Services.LanguageServices;
+using Bible.Service.Services.PartServices;
 using Bible.Service.Services.SectionServices;
 using Bible.Service.Services.VerseServices;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace Bible.Service.Extensions
             // Custom DI
             services.AddTransient(typeof(ILanguageService), typeof(LanguageService));
             services.AddTransient(typeof(IBiblesService), typeof(BiblesService));
+            services.AddTransient(typeof(IPartService), typeof(PartService));
             services.AddTransient(typeof(ISectionService), typeof(SectionSerive));
             services.AddTransient(typeof(IBookService), typeof(BookService));
             services.AddTransient(typeof(IChapterService), typeof(ChapterService));

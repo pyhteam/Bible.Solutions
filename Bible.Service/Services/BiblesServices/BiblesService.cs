@@ -76,29 +76,7 @@ namespace Bible.Service.Services.BiblesServices
                     LanguageId = x.LanguageId,
                     LanguageCode = x.Language.Code,
                     LanguageName = x.Language.Name,
-                    BookViews = x.Books.Select(y => new BookView()
-                    {
-                        Id = y.Id,
-                        Name = y.Name,
-                        CodeBook = y.CodeBook,
-                        SectionId = y.SectionId,
-                        Introduce = y.Introduce,
-                        SectionName = y.Section.Name,
-                        Chapters = y.Chapters.Select(z => new ChapterView()
-                        {
-                            Id = z.Id,
-                            Name = z.Name,
-                            BookId = z.BookId,
-                            BookName = z.Book.Name,
-                            VerserViews = z.Verses.Select(a => new VerserView()
-                            {
-                                Id = a.Id,
-                                Content = a.Content,
-                                ChapterId = a.ChapterId,
-                                ChapterName = a.Chapter.Name,
-                            }).ToList(),
-                        }).ToList(),
-                    }).ToList(),
+
                 }).FirstOrDefaultAsync(x => x.Id.Equals(id));
             return bible;
         }

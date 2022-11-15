@@ -3,9 +3,8 @@
     public class BookQuery
     {
         public string? Name { get; set; }
-        public string? CodeBook { get; set; }
-        public string? Introduce { get; set; }
-        public int SectionId { get; set; }
-        public int BiblesId { get; set; }
+        public String? CodeBook { get; set; }
+        public String? Introduce { get; set; }
+        public Int32 PartId { get; set; }
     }
 }

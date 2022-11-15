@@ -24,13 +24,10 @@ namespace Bible.Service.Services.BookServices
                 Name = entity.Name,
                 CodeBook = entity.CodeBook,
                 Introduce = entity.Introduce,
-                SectionId = entity.SectionId,
-                BiblesId = entity.BiblesId
+                PartId = entity.PartId,
             };
             _unitOfWork.GetRepository<Book>().Add(book);
             return await _unitOfWork.SaveChangesAsync() > 0;
-
-
         }
 
         public async Task<int> DeleteAsync(int id)
@@ -51,19 +48,18 @@ namespace Bible.Service.Services.BookServices
         public async Task<IEnumerable<BookView>> GetAllAsync()
         {
             var books = await _unitOfWork.GetRepository<Book>().AsQueryable()
-                .Include(x => x.Bibles)
-                .Include(x => x.Section)
+                .Include(x => x.Part).ThenInclude(b => b.Bibles)
                 .Select(x => new BookView()
                 {
                     Id = x.Id,
                     Name = x.Name,
                     CodeBook = x.CodeBook,
                     Introduce = x.Introduce,
-                    SectionId = x.SectionId,
-                    SectionName = x.Section.Name,
-                    BiblesId = x.BiblesId,
-                    BiblesName = x.Bibles.Name,
-                    BiblesCode = x.Bibles.Code,
+                    PartId = x.PartId,
+                    PartName = x.Part.Name,
+                    BiblesId = x.Part.BiblesId,
+                    BiblesName = x.Part.Bibles.Name,
+                    BiblesCode = x.Part.Bibles.Code
 
                 }).ToListAsync();
             return books;
@@ -76,19 +72,19 @@ namespace Bible.Service.Services.BookServices
                 return null;
             }
             var book = await _unitOfWork.GetRepository<Book>().AsQueryable()
-                 .Include(x => x.Bibles)
-                 .Include(x => x.Section)
+                 .Include(x => x.Part).ThenInclude(b => b.Bibles)
                  .Select(x => new BookView()
                  {
+
                      Id = x.Id,
                      Name = x.Name,
                      CodeBook = x.CodeBook,
                      Introduce = x.Introduce,
-                     SectionId = x.SectionId,
-                     SectionName = x.Section.Name,
-                     BiblesId = x.BiblesId,
-                     BiblesName = x.Bibles.Name,
-                     BiblesCode = x.Bibles.Code,
+                     PartId = x.PartId,
+                     PartName = x.Part.Name,
+                     BiblesId = x.Part.BiblesId,
+                     BiblesName = x.Part.Bibles.Name,
+                     BiblesCode = x.Part.Bibles.Code
 
                  }).FirstOrDefaultAsync(x => x.Equals(id));
             return book;
@@ -108,9 +104,7 @@ namespace Bible.Service.Services.BookServices
             book.Name = entity.Name;
             book.CodeBook = entity.CodeBook;
             book.Introduce = entity.Introduce;
-            book.SectionId = entity.SectionId;
-            book.BiblesId = entity.BiblesId;
-
+            book.PartId = entity.PartId;
             _unitOfWork.GetRepository<Book>().Update(book);
             return await _unitOfWork.SaveChangesAsync();
         }
