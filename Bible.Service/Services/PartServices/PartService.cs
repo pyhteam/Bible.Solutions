@@ -53,7 +53,7 @@ namespace Bible.Service.Services.PartServices
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    PartParentId = x.PartParentId,
+                    PartParentId = (int)x.PartParentId,
                     PartParentName = x.PartParent.Name,
                     BiblesId = x.BiblesId,
                     BiblesName = x.Bibles.Name
@@ -74,7 +74,7 @@ namespace Bible.Service.Services.PartServices
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    PartParentId = x.PartParentId,
+                    PartParentId = (int)x.PartParentId,
                     PartParentName = x.PartParent.Name,
                     BiblesId = x.BiblesId,
                     BiblesName = x.Bibles.Name,
@@ -82,7 +82,7 @@ namespace Bible.Service.Services.PartServices
                     {
                         Id = a.Id,
                         Name = a.Name,
-                        PartParentId = a.PartParentId,
+                        PartParentId = (int)a.PartParentId,
                         PartParentName = a.PartParent.Name,
                         BiblesId = a.BiblesId,
                         BiblesName = a.Bibles.Name
