@@ -8,7 +8,7 @@
         public String? LinkAudio { get; set; }
         public String? CreatedBy { get; set; }
         public String? UpdatedBy { get; set; }
-        public Boolean IsActive { get; set; }
+        public Boolean? IsActive { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdateAt { get; set; }
 

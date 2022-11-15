@@ -4,6 +4,7 @@ using Bible.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bible.Database.Migrations
 {
     [DbContext(typeof(BibleContext))]
-    partial class BibleContextModelSnapshot : ModelSnapshot
+    [Migration("20221115161606_updateColumPartParent")]
+    partial class updateColumPartParent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +35,7 @@ namespace Bible.Database.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 21, 3, 231, DateTimeKind.Local).AddTicks(5216));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 16, 5, 928, DateTimeKind.Local).AddTicks(1633));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -43,7 +45,7 @@ namespace Bible.Database.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasDefaultValue("admin");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
