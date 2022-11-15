@@ -34,10 +34,11 @@
     <br />
     <br />   
     <a href="https://github.com/pyhteam/Bible.Solutions/tree/Bible.AddData">Code API</a>
+    ➡️
     <a href="https://github.com/pyhteam/Bible.Solutions">View Demo</a>
-    ·
+    ➡️
     <a href="https://github.com/pyhteam/Bible.Solutions/issues">Report Bug</a>
-    ·
+    ➡️
     <a href="https://github.com/pyhteam/Bible.Solutions/issues">Request Feature</a>
   </p>
 </div>
