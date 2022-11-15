@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bible.Database.Migrations
 {
-    public partial class updateColumPartParent : Migration
+    public partial class InitDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,8 +165,8 @@ namespace Bible.Database.Migrations
                     LinkAudio = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false, defaultValue: "admin"),
                     UpdatedBy = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 11, 15, 23, 16, 5, 928, DateTimeKind.Local).AddTicks(1633)),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 11, 15, 23, 24, 52, 484, DateTimeKind.Local).AddTicks(8659)),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     VerseId = table.Column<int>(type: "int", nullable: false)
                 },

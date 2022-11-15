@@ -33,7 +33,7 @@ namespace Bible.Database.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 21, 3, 231, DateTimeKind.Local).AddTicks(5216));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 24, 52, 484, DateTimeKind.Local).AddTicks(8659));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()

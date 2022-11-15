@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bible.Database.Migrations
 {
     [DbContext(typeof(BibleContext))]
-    [Migration("20221115161606_updateColumPartParent")]
-    partial class updateColumPartParent
+    [Migration("20221115162452_InitDatabase")]
+    partial class InitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,7 @@ namespace Bible.Database.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 16, 5, 928, DateTimeKind.Local).AddTicks(1633));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 24, 52, 484, DateTimeKind.Local).AddTicks(8659));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -45,7 +45,7 @@ namespace Bible.Database.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasDefaultValue("admin");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
