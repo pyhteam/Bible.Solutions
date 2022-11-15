@@ -28,10 +28,12 @@
 
   <p align="center">
     This is bible database using C# - .NET Core build
+    And API NET 6.0. You can add the missing bible yourself
     <br />
     <a href="https://github.com/pyhteam/Bible.Solutions"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
+    <br />   
+    <a href="https://github.com/pyhteam/Bible.Solutions/tree/Bible.AddData">Code API</a>
     <a href="https://github.com/pyhteam/Bible.Solutions">View Demo</a>
     ·
     <a href="https://github.com/pyhteam/Bible.Solutions/issues">Report Bug</a>
