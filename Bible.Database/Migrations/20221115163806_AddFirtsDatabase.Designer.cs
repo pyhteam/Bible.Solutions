@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bible.Database.Migrations
 {
     [DbContext(typeof(BibleContext))]
-    [Migration("20221115162452_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20221115163806_AddFirtsDatabase")]
+    partial class AddFirtsDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,7 @@ namespace Bible.Database.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 24, 52, 484, DateTimeKind.Local).AddTicks(8659));
+                        .HasDefaultValue(new DateTime(2022, 11, 15, 23, 38, 6, 345, DateTimeKind.Local).AddTicks(3524));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()

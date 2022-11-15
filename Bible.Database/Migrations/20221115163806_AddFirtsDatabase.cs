@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bible.Database.Migrations
 {
-    public partial class InitDatabase : Migration
+    public partial class AddFirtsDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -166,7 +166,7 @@ namespace Bible.Database.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false, defaultValue: "admin"),
                     UpdatedBy = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 11, 15, 23, 24, 52, 484, DateTimeKind.Local).AddTicks(8659)),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2022, 11, 15, 23, 38, 6, 345, DateTimeKind.Local).AddTicks(3524)),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     VerseId = table.Column<int>(type: "int", nullable: false)
                 },
