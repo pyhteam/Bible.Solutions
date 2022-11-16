@@ -63,7 +63,8 @@ namespace Bible.Service.Services.VerseServices
                         Vocal = y.Vocal,
                         CreatedBy = y.CreatedBy,
                         UpdatedBy = y.UpdatedBy,
-                        IsActive = (bool)y.IsActive,
+                        IsActive = y.IsActive ?? false,
+                        VerseId = y.VerseId,
                         CreatedAt = y.CreatedAt,
                         UpdatedAt = y.UpdateAt,
                     }).ToList(),
@@ -82,8 +83,8 @@ namespace Bible.Service.Services.VerseServices
                 .Select(x => new VerserView()
                 {
                     Id = x.Id,
-                    Number = x.Number,
                     Content = x.Content,
+                    Number = x.Number,
                     SectionId = x.SectionId,
                     SectionName = x.Section.Name,
                     AudioVerses = x.AudioVerses.Select(y => new AudioVerseView()
@@ -94,11 +95,12 @@ namespace Bible.Service.Services.VerseServices
                         Vocal = y.Vocal,
                         CreatedBy = y.CreatedBy,
                         UpdatedBy = y.UpdatedBy,
-                        IsActive = (bool)y.IsActive,
+                        IsActive = y.IsActive ?? false,
+                        VerseId = y.VerseId,
                         CreatedAt = y.CreatedAt,
                         UpdatedAt = y.UpdateAt,
                     }).ToList(),
-                }).FirstOrDefaultAsync(x => x.Equals(id));
+                }).FirstOrDefaultAsync(x => x.Id.Equals(id));
             return verse;
         }
 

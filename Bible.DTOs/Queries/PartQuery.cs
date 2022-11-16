@@ -4,6 +4,6 @@
     {
         public String? Name { get; set; }
         public Int32 BiblesId { get; set; }
-        public Int32 PartParentId { get; set; }
+        public Int32? PartParentId { get; set; }
     }
 }

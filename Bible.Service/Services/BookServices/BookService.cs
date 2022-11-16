@@ -72,21 +72,28 @@ namespace Bible.Service.Services.BookServices
                 return null;
             }
             var book = await _unitOfWork.GetRepository<Book>().AsQueryable()
-                 .Include(x => x.Part).ThenInclude(b => b.Bibles)
-                 .Select(x => new BookView()
-                 {
+                    .Where(x => x.Id == id)
+                    .Include(x => x.Part).ThenInclude(b => b.Bibles)
+                    .Select(x => new BookView()
+                    {
 
-                     Id = x.Id,
-                     Name = x.Name,
-                     CodeBook = x.CodeBook,
-                     Introduce = x.Introduce,
-                     PartId = x.PartId,
-                     PartName = x.Part.Name,
-                     BiblesId = x.Part.BiblesId,
-                     BiblesName = x.Part.Bibles.Name,
-                     BiblesCode = x.Part.Bibles.Code
+                        Id = x.Id,
+                        Name = x.Name,
+                        CodeBook = x.CodeBook,
+                        Introduce = x.Introduce,
+                        PartId = x.PartId,
+                        PartName = x.Part.Name,
+                        BiblesId = x.Part.BiblesId,
+                        BiblesName = x.Part.Bibles.Name,
+                        BiblesCode = x.Part.Bibles.Code,
+                        Chapters = x.Chapters.Select(c => new ChapterView()
+                        {
+                            Id = c.Id,
+                            Name = c.Name,
+                            Summary = c.Summary,
 
-                 }).FirstOrDefaultAsync(x => x.Equals(id));
+                        }).ToList()
+                    }).SingleOrDefaultAsync();
             return book;
         }
 

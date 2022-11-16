@@ -19,6 +19,10 @@ namespace Bible.Service.Services.PartServices
             {
                 return false;
             }
+            if (entity.PartParentId == 0)
+            {
+                entity.PartParentId = null;
+            }
             var part = new Part()
             {
                 Name = entity.Name,
@@ -53,7 +57,7 @@ namespace Bible.Service.Services.PartServices
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    PartParentId = (int)x.PartParentId,
+                    PartParentId = x.PartParentId ?? 0,
                     PartParentName = x.PartParent.Name,
                     BiblesId = x.BiblesId,
                     BiblesName = x.Bibles.Name
@@ -74,7 +78,7 @@ namespace Bible.Service.Services.PartServices
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    PartParentId = (int)x.PartParentId,
+                    PartParentId = x.PartParentId ?? 0,
                     PartParentName = x.PartParent.Name,
                     BiblesId = x.BiblesId,
                     BiblesName = x.Bibles.Name,
@@ -82,7 +86,7 @@ namespace Bible.Service.Services.PartServices
                     {
                         Id = a.Id,
                         Name = a.Name,
-                        PartParentId = (int)a.PartParentId,
+                        PartParentId = a.PartParentId ?? 0,
                         PartParentName = a.PartParent.Name,
                         BiblesId = a.BiblesId,
                         BiblesName = a.Bibles.Name
@@ -109,6 +113,10 @@ namespace Bible.Service.Services.PartServices
             if (part == null)
             {
                 return 0;
+            }
+            if (entity.PartParentId == 0)
+            {
+                entity.PartParentId = null;
             }
             part.Name = entity.Name;
             part.PartParentId = entity.PartParentId;

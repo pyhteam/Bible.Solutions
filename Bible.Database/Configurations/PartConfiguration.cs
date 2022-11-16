@@ -10,7 +10,7 @@ namespace Bible.Database.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().IsUnicode().HasMaxLength(250);
-            builder.Property(x => x.PartParentId).HasDefaultValue(0);
+            builder.Property(x => x.PartParentId).HasDefaultValueSql("NULL");
             // foreign key
             builder.HasOne(x => x.PartParent).WithMany(x => x.ChildParts).HasForeignKey(x => x.PartParentId).OnDelete(DeleteBehavior.NoAction).IsRequired(false);
             builder.HasOne(x => x.Bibles).WithMany(x => x.Parts).HasForeignKey(x => x.BiblesId);
