@@ -1,4 +1,5 @@
-﻿using Bible.Service.Interfaces;
+﻿using Bible.Service.Helpers;
+using Bible.Service.Interfaces;
 
 namespace Bible.Service.Services.BaseService
 {

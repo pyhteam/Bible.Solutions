@@ -5,9 +5,12 @@ using Bible.Service.Services.AudioVerseServices;
 using Bible.Service.Services.BiblesServices;
 using Bible.Service.Services.BookServices;
 using Bible.Service.Services.ChapterServices;
+using Bible.Service.Services.FileServices;
 using Bible.Service.Services.LanguageServices;
 using Bible.Service.Services.PartServices;
 using Bible.Service.Services.SectionServices;
+using Bible.Service.Services.TokenServices;
+using Bible.Service.Services.UserServices;
 using Bible.Service.Services.VerseServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +25,8 @@ namespace Bible.Service.Extensions
             // Default DI
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
-
+            // DI Authen
+            services.AddScoped(typeof(ITokenService), typeof(TokenService));
             // Custom DI
             services.AddTransient(typeof(ILanguageService), typeof(LanguageService));
             services.AddTransient(typeof(IBiblesService), typeof(BiblesService));
@@ -33,6 +37,8 @@ namespace Bible.Service.Extensions
             services.AddTransient(typeof(IVerseService), typeof(VerseService));
             services.AddTransient(typeof(IAudioVerseService), typeof(AudioVerseService));
 
+            services.AddTransient(typeof(IUserService), typeof(UserService));
+            services.AddTransient(typeof(IFileService), typeof(FileService));
 
             // Add ConnectionString
             services.AddDbContext<BibleContext>(options =>

@@ -13,12 +13,13 @@ namespace Bible.API.Controllers.Base
             _service = service;
         }
 
-        protected IActionResult GetResponse(object data)
+        protected IActionResult GetResponse(object data, string? message = null)
         {
             return Ok(new
             {
                 Success = true,
                 Items = data,
+                Message = message ?? "Success",
                 TotalCount = data.GetType().GetProperty("Count")?.GetValue(data, null) ?? 0
             });
         }
@@ -28,7 +29,7 @@ namespace Bible.API.Controllers.Base
             return Ok(new
             {
                 Success = false,
-                Message = message
+                Message = message ?? "Error"
             });
         }
     }
