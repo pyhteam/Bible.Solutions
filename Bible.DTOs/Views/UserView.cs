@@ -8,7 +8,7 @@
         public String? FirtName { get; set; }
         public String? LastName { get; set; }
         public String? Image { get; set; }
-        public String? Role { get; set; }
+        public List<String>? Roles { get; set; }
         public String? Token { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public DateTime? CreatedAt { get; set; }

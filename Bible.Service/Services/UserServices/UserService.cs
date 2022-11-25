@@ -79,7 +79,7 @@ namespace Bible.Service.Services.UserServices
                 DateOfBirth = x.DateOfBirth,
                 Username = x.UserName,
                 Image = x.Image,
-                Role = _userManager.GetRolesAsync(x).Result.FirstOrDefault(),
+                Roles = _userManager.GetRolesAsync(x).Result.ToList(),
                 CreatedAt = x.CreatedAt,
                 UpdatedAt = x.UpdatedAt,
                 LastActive = x.LastActive
@@ -107,7 +107,7 @@ namespace Bible.Service.Services.UserServices
                 DateOfBirth = user.DateOfBirth,
                 Username = user.UserName,
                 Image = user.Image,
-                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                Roles = _userManager.GetRolesAsync(user).Result.ToList(),
                 CreatedAt = user.CreatedAt,
                 UpdatedAt = user.UpdatedAt,
                 LastActive = user.LastActive
@@ -121,10 +121,10 @@ namespace Bible.Service.Services.UserServices
             {
                 return null;
             }
-            if (entity.Username.Contains("@"))
+            if (entity.Email.Contains("@"))
             {
                 // Login with email
-                var user = await _userManager.FindByEmailAsync(entity.Username);
+                var user = await _userManager.FindByEmailAsync(entity.Email);
                 if (user == null)
                 {
                     return null;
@@ -144,7 +144,7 @@ namespace Bible.Service.Services.UserServices
                     DateOfBirth = user.DateOfBirth,
                     Username = user.UserName,
                     Image = user.Image,
-                    Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                    Roles = _userManager.GetRolesAsync(user).Result.ToList(),
                     CreatedAt = user.CreatedAt,
                 };
                 return userView;
@@ -152,7 +152,7 @@ namespace Bible.Service.Services.UserServices
             else
             {
                 // Login with username
-                var user = await _userManager.FindByNameAsync(entity.Username);
+                var user = await _userManager.FindByNameAsync(entity.Email);
                 if (user == null)
                 {
                     return null;
@@ -172,7 +172,7 @@ namespace Bible.Service.Services.UserServices
                     DateOfBirth = user.DateOfBirth,
                     Username = user.UserName,
                     Image = user.Image,
-                    Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                    Roles = _userManager.GetRolesAsync(user).Result.ToList(),
                     CreatedAt = user.CreatedAt,
                 };
                 return userView;
@@ -215,7 +215,7 @@ namespace Bible.Service.Services.UserServices
                 DateOfBirth = user.DateOfBirth,
                 Username = user.UserName,
                 Image = user.Image,
-                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                Roles = _userManager.GetRolesAsync(user).Result.ToList(),
                 CreatedAt = DateTime.Now
             };
             return userView;
